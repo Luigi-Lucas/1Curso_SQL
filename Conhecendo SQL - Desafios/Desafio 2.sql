@@ -1,0 +1,3 @@
+USE Suco_De_Frutas
+
+DROP TABLE [FABRICA];
