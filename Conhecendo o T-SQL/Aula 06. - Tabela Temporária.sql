@@ -1,0 +1,42 @@
+
+-- Desafio 1: FOR decrescente
+
+DECLARE @I INT;
+SET @I = 10
+WHILE (@I >= 1)
+BEGIN
+     PRINT @I;
+     SET @I = @I - 1
+END;
+
+--=============================================================================================================--
+
+-- Desafio 2: escrevendo a sequência de FIBONACCI em uma tabela
+
+DECLARE @NUMERO_ANTERIOR2 INT;
+DECLARE @NUMERO_ANTERIOR1 INT;
+DECLARE @NUMERO_ATUAL INT;
+DECLARE @SEQUENCIA INT;
+DECLARE @CONTADOR_SEQUENCIA INT;
+DECLARE @TABELA TABLE (SEQUENCIA INT, VALOR INT);
+
+SET @SEQUENCIA = 44;
+SET @CONTADOR_SEQUENCIA = 3;
+SET @NUMERO_ANTERIOR2 = 0;
+SET @NUMERO_ANTERIOR1 = 1;
+
+INSERT INTO @TABELA VALUES(1, 0)
+INSERT INTO @TABELA VALUES(2, 1)
+WHILE @CONTADOR_SEQUENCIA <= @SEQUENCIA
+BEGIN
+   SET @NUMERO_ATUAL = @NUMERO_ANTERIOR2 + @NUMERO_ANTERIOR1;
+   INSERT INTO @TABELA VALUES(TRIM(STR(@CONTADOR_SEQUENCIA,10,0)), TRIM(STR(@NUMERO_ATUAL, 10,0)))
+   SET  @NUMERO_ANTERIOR2 = @NUMERO_ANTERIOR1;
+   SET @NUMERO_ANTERIOR1 = @NUMERO_ATUAL;
+   SET @CONTADOR_SEQUENCIA = @CONTADOR_SEQUENCIA + 1;
+END;
+
+SELECT * FROM @TABELA
+
+--=============================================================================================================--
+
